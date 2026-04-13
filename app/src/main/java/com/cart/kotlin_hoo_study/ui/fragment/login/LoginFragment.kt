@@ -10,9 +10,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.cart.kotlin_hoo_study.R
+import com.cart.kotlin_hoo_study.databinding.LoginFragmentBinding
 import com.cart.kotlin_hoo_study.ui.activity.MainActivity
+import com.cart.kotlin_hoo_study.viewmodel.LoginModel
 
 class LoginFragment : Fragment() {
 
@@ -24,7 +27,25 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.login_fragment, container, false)
+        /*val binding: LoginFragmentBinding =  LoginFragmentBinding.inflate(
+            inflater
+            , container
+            , false
+        )*/
+        // 上面这种方式也可以，选其一就好
+        val binding: LoginFragmentBinding = DataBindingUtil.inflate(
+            inflater
+            , R.layout.login_fragment
+            , container
+            , false
+        )
+
+        val loginModel = LoginModel("", "", requireContext())
+        binding.model = loginModel
+        binding.activity = activity
+
+        return binding.root
+        /*return inflater.inflate(R.layout.login_fragment, container, false)*/
     }
 
     lateinit var tvCancel: TextView
@@ -42,7 +63,7 @@ class LoginFragment : Fragment() {
             etAccount.setText(it)
         }
 
-        tvCancel.setOnClickListener {
+        /*tvCancel.setOnClickListener {
             findNavController().navigate(R.id.welcomeFragment)
         }
 
@@ -50,6 +71,6 @@ class LoginFragment : Fragment() {
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
             Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 }
