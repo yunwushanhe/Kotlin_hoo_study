@@ -91,7 +91,7 @@
             app:layout_constraintVertical_bias="0.8"
             android:text="Sign in"
             android:onClick="@{() -> model.login()}"
-            android:enabled="@{(model.p.isEmpty()||model.n.isEmpty()) ? false : true}"
+            android:enabled="@{(model.p.isEmpty() || model.n.isEmpty()) ? false : true}"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="MissingConstraints" />
         <!--    android:enabled="@{model.enable}"-->
