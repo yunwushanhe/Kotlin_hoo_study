@@ -45,7 +45,6 @@ class LoginFragment : Fragment() {
         binding.activity = activity
 
         return binding.root
-        /*return inflater.inflate(R.layout.login_fragment, container, false)*/
     }
 
     lateinit var tvCancel: TextView
