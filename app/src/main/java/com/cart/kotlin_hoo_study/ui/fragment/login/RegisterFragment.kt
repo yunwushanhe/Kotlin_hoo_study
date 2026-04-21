@@ -16,6 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cart.kotlin_hoo_study.R
+import com.cart.kotlin_hoo_study.common.BaseConstant
 import com.cart.kotlin_hoo_study.databinding.RegisterFragmentBinding
 import com.cart.kotlin_hoo_study.viewmodel.RegisterModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,7 +64,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.register_fragment,
@@ -112,7 +113,7 @@ class RegisterFragment : Fragment() {
             
             // 注册成功后，跳转到登录页面
             val bundle = Bundle()
-            bundle.putString("ARGS_NAME", registerModel.account.value)
+            bundle.putString(BaseConstant.KEY_REGISTER_ACCOUNT, registerModel.account.value)
             findNavController().navigate(R.id.loginFragment, bundle)
         }
     }

@@ -58,8 +58,8 @@
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintVertical_bias="0.3"
             android:hint="account"
-            android:text="@{model.n}"
-            android:onTextChanged="@{(text, start, before, count)->model.onNameChanged(text)}"
+            android:text="@{model.account}"
+            android:onTextChanged="@{(text, start, before, count)->model.onAccountChanged(text)}"
             android:drawableStart="@drawable/common_ic_account"
             tools:ignore="MissingConstraints" />
         <!--    app:addTextChangedListener="@{model.nameWatcher}"
@@ -74,7 +74,7 @@
             app:layout_constraintBottom_toTopOf="@+id/btn_login"
             android:layout_marginTop="20dp"
             android:hint="password"
-            android:text="@{model.p}"
+            android:text="@{model.pwd}"
             android:onTextChanged="@{model::onPwdChanged}"
             android:drawableStart="@drawable/common_ic_pwd"
             android:inputType="textPassword"
@@ -90,11 +90,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.8"
             android:text="Sign in"
-            android:onClick="@{() -> model.login()}"
-            android:enabled="@{(model.p.isEmpty() || model.n.isEmpty()) ? false : true}"
+            android:enabled="@{model.enable}"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="MissingConstraints" />
-        <!--    android:enabled="@{model.enable}"-->
+        <!--    android:enabled="@{(model.pwd.isEmpty() || model.account.isEmpty()) ? false : true}"-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
