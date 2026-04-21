@@ -1,6 +1,10 @@
 package com.cart.kotlin_hoo_study.di
 
+import com.cart.kotlin_hoo_study.db.dao.FavouriteShoeDao
+import com.cart.kotlin_hoo_study.db.dao.ShoeDao
 import com.cart.kotlin_hoo_study.db.dao.UserDao
+import com.cart.kotlin_hoo_study.db.repository.FavouriteShoeRepository
+import com.cart.kotlin_hoo_study.db.repository.ShoeRepository
 import com.cart.kotlin_hoo_study.db.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -27,5 +31,17 @@ object RepositoryModule {
     @Singleton
     fun provideUserRepository(userDao: UserDao): UserRepository {
         return UserRepository(userDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideShoeRepository(shoeDao: ShoeDao): ShoeRepository {
+        return ShoeRepository(shoeDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavouriteShoeRepository(favouriteShoeDao: FavouriteShoeDao): FavouriteShoeRepository {
+        return FavouriteShoeRepository(favouriteShoeDao)
     }
 }

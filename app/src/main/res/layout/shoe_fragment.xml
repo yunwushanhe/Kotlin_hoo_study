@@ -7,15 +7,107 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.main.ShoeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="shoe_fragment"
-        android:textSize="18sp"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="290dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingEnd="10dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_shoe"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:padding="10dp"
+        android:src="@drawable/shoe_ic_brand"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:backgroundTint="@color/colorPrimary"
+        app:tint="#ffffff"
+        app:pressedTranslationZ="20dp"
+        app:rippleColor="#1f000000" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_nike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:padding="10dp"
+        android:src="@drawable/shoe_ic_brand_nike"
+        app:fabSize="normal"
+        app:layout_constraintCircle="@+id/fab_shoe"
+        app:layout_constraintCircleRadius="80dp"
+        app:layout_constraintCircleAngle="270"
+        app:backgroundTint="@color/colorPrimary"
+        app:tint="#ffffff"
+        app:pressedTranslationZ="20dp"
+        app:rippleColor="#1f000000" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_adidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:padding="10dp"
+        android:src="@drawable/shoe_ic_brand_adidas"
+        app:fabSize="normal"
+        app:layout_constraintCircle="@+id/fab_shoe"
+        app:layout_constraintCircleRadius="80dp"
+        app:layout_constraintCircleAngle="315"
+        app:backgroundTint="@color/colorPrimary"
+        app:tint="#ffffff"
+        app:pressedTranslationZ="20dp"
+        app:rippleColor="#1f000000" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:visibility="gone"
+        android:padding="10dp"
+        android:src="@drawable/shoe_ic_brand_other"
+        app:fabSize="normal"
+        app:layout_constraintCircle="@+id/fab_shoe"
+        app:layout_constraintCircleRadius="80dp"
+        app:layout_constraintCircleAngle="360"
+        app:backgroundTint="@color/colorPrimary"
+        app:tint="#ffffff"
+        app:pressedTranslationZ="20dp"
+        app:rippleColor="#1f000000" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gp_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="fab_nike"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gp_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="fab_adidas"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gp_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="fab_other"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

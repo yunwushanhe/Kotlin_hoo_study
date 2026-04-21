@@ -8,6 +8,8 @@ package com.cart.kotlin_hoo_study.di
 
 import android.content.Context
 import com.cart.kotlin_hoo_study.db.AppDataBase
+import com.cart.kotlin_hoo_study.db.dao.FavouriteShoeDao
+import com.cart.kotlin_hoo_study.db.dao.ShoeDao
 import com.cart.kotlin_hoo_study.db.dao.UserDao
 import dagger.Module
 import dagger.Provides
@@ -53,5 +55,17 @@ object DatabaseDaoModule {
     @Singleton
     fun provideUserDao(@ApplicationContext context: Context): UserDao {
         return AppDataBase.getInstance(context).userDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideShoeDao(@ApplicationContext context: Context): ShoeDao {
+        return AppDataBase.getInstance(context).shoeDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavouriteShoeDao(@ApplicationContext context: Context): FavouriteShoeDao {
+        return AppDataBase.getInstance(context).favouriteShoeDao()
     }
 }

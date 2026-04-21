@@ -30,6 +30,4 @@ interface UserDao {
 
     @Update
     fun update(user: User)
-
-
 }

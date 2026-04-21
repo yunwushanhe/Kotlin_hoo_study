@@ -10,13 +10,27 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.cart.kotlin_hoo_study.db.dao.FavouriteShoeDao
+import com.cart.kotlin_hoo_study.db.dao.ShoeDao
 import com.cart.kotlin_hoo_study.db.dao.UserDao
+import com.cart.kotlin_hoo_study.db.data.FavouriteShoe
+import com.cart.kotlin_hoo_study.db.data.Shoe
 import com.cart.kotlin_hoo_study.db.data.User
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(
+    entities = [User::class, Shoe::class, FavouriteShoe::class],
+    version = 2,
+    exportSchema = false
+) // 每次新增改变表，都需要版本+1
+@TypeConverters(Converters::class)
 abstract class AppDataBase: RoomDatabase() {
 
     abstract fun userDao(): UserDao
+
+    abstract fun shoeDao(): ShoeDao
+
+    abstract fun favouriteShoeDao(): FavouriteShoeDao
 
     companion object {
 
@@ -34,6 +48,8 @@ abstract class AppDataBase: RoomDatabase() {
         private fun buildDataBase(context: Context): AppDataBase {
             return Room
                 .databaseBuilder(context, AppDataBase::class.java, "study-database")
+                //.addMigrations(UpgradeDataBase.MIGRATION_1_2) // 数据库变动，迁移元数据进行升级的方式
+                .fallbackToDestructiveMigration() // 注释上面这一行，使用这一行，则是丢弃数据升级
                 .build()
         }
     }

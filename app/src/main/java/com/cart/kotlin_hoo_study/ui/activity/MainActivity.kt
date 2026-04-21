@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation_view)
-        val mToolbar: Toolbar = findViewById(R.id.toolbar)
         val mCamera: ImageView = findViewById(R.id.iv_camera)
 
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            when(destination.id){
+            when(destination.id) {
                 R.id.meFragment -> mCamera.visibility = View.VISIBLE
                 else -> mCamera.visibility = View.GONE
             }
