@@ -23,6 +23,18 @@ class ShoeRepository @Inject constructor(private val shoeDao: ShoeDao) {
         }
     }
 
+    suspend fun getAllShoeSync(): List<Shoe> {
+        return withContext(IO) {
+            shoeDao.getAllShoeSync()
+        }
+    }
+
+    suspend fun getShoeCount(): Int {
+        return withContext(IO) {
+            shoeDao.getShoeCount()
+        }
+    }
+
     fun getAllShoe(): LiveData<List<Shoe>> {
         return shoeDao.getAllShoe()
     }

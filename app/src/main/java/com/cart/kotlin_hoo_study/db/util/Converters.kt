@@ -4,7 +4,7 @@
  * You may not use, copy, distribute, modify, transmit in any form this file
  * except in compliance with CARThunder in writing by applicable law.
  */
-package com.cart.kotlin_hoo_study.db
+package com.cart.kotlin_hoo_study.db.util
 
 import androidx.room.TypeConverter
 import java.util.Calendar

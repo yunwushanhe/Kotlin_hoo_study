@@ -17,10 +17,16 @@ import com.cart.kotlin_hoo_study.db.data.Shoe
 interface ShoeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertShoes(shoes: List<Shoe>)
+    suspend fun insertShoes(shoes: List<Shoe>)
 
     @Query("select * from shoe")
     fun getAllShoe(): LiveData<List<Shoe>>
+
+    @Query("select * from shoe")
+    suspend fun getAllShoeSync(): List<Shoe>
+
+    @Query("select count(*) from shoe")
+    suspend fun getShoeCount(): Int
 
     @Query("select * from shoe where id = :id")
     fun findShoeById(id: Long): LiveData<Shoe>

@@ -11,7 +11,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.cart.kotlin_hoo_study.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

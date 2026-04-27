@@ -17,6 +17,7 @@ import com.cart.kotlin_hoo_study.db.dao.UserDao
 import com.cart.kotlin_hoo_study.db.data.FavouriteShoe
 import com.cart.kotlin_hoo_study.db.data.Shoe
 import com.cart.kotlin_hoo_study.db.data.User
+import com.cart.kotlin_hoo_study.db.util.Converters
 
 @Database(
     entities = [User::class, Shoe::class, FavouriteShoe::class],

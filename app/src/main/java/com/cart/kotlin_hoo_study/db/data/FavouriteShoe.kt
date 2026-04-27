@@ -13,6 +13,11 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.Calendar
 
+/**
+ * FavouriteShoe 数据类，
+ * 只有在构造函数中的变量才会被 toString 函数打印出来，直接在内部定义的不可以
+ * 不在构造函数中定义的变量是只有基本的 set、get 函数，例如这里的 id 变量
+ */
 @Entity(
     tableName = "favourite_shoe",
     foreignKeys = [

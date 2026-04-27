@@ -1,8 +1,11 @@
-package com.cart.kotlin_hoo_study.db
+package com.cart.kotlin_hoo_study.db.util
 
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
+/**
+ * 数据库变动，迁移元数据进行升级所用代码（只是一个样板，具体跑通还得根据实际情况去写）
+ */
 object UpgradeDataBase {
     val MIGRATION_1_2 = object : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
