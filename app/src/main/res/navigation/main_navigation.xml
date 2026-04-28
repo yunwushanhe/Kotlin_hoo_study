@@ -9,7 +9,11 @@
         android:id="@+id/shoeFragment"
         android:name="com.cart.kotlin_hoo_study.ui.fragment.main.ShoeFragment"
         android:label="shoe_fragment"
-        tools:layout="@layout/shoe_fragment" />
+        tools:layout="@layout/shoe_fragment" >
+        <action
+            android:id="@+id/action_shoeFragment_to_shoeDetailFragment"
+            app:destination="@id/shoeDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/favouriteFragment"
@@ -22,5 +26,15 @@
         android:name="com.cart.kotlin_hoo_study.ui.fragment.main.MeFragment"
         android:label="me_fragment"
         tools:layout="@layout/me_fragment" />
+
+    <fragment
+        android:id="@+id/shoeDetailFragment"
+        android:name="com.cart.kotlin_hoo_study.ui.fragment.main.ShoeDetailFragment"
+        android:label="shoe_detail_fragment"
+        tools:layout="@layout/shoe_detail_fragment">
+        <argument
+            android:name="shoeId"
+            app:argType="long" />
+    </fragment>
 
 </navigation>

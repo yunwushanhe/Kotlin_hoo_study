@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.navigation.fragment.findNavController
 import com.cart.kotlin_hoo_study.R
 import com.cart.kotlin_hoo_study.ui.adapter.ShoeAdapter
 import com.cart.kotlin_hoo_study.viewmodel.ShoeModel
@@ -16,9 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ShoeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
-
-    private var _binding: View? = null
-    private val binding get() = _binding!!
 
     private val shoeModel: ShoeModel by viewModels()
     private lateinit var shoeAdapter: ShoeAdapter
@@ -43,7 +41,10 @@ class ShoeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupRecyclerView() {
-        shoeAdapter = ShoeAdapter()
+        shoeAdapter = ShoeAdapter { shoe ->
+            val action = ShoeFragmentDirections.actionShoeFragmentToShoeDetailFragment(shoe.id)
+            findNavController().navigate(action)
+        }
         recyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = shoeAdapter
@@ -60,10 +61,5 @@ class ShoeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onRefresh() {
         refreshLayout.isRefreshing = false
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

@@ -6,9 +6,11 @@
  */
 package com.cart.kotlin_hoo_study.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.cart.kotlin_hoo_study.db.data.FavouriteShoe
 
 @Dao
@@ -16,4 +18,7 @@ interface FavouriteShoeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavouriteShoe(favouriteShoe: FavouriteShoe)
+
+    @Query("SELECT * FROM favourite_shoe WHERE user_id = :userId AND shoe_id = :shoeId")
+    fun findFavouriteShoeByUserIdAndShoeId(userId: Long, shoeId: Long): LiveData<FavouriteShoe>
 }

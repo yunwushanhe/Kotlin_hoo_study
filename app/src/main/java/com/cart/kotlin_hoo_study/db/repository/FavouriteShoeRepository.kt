@@ -6,6 +6,7 @@
  */
 package com.cart.kotlin_hoo_study.db.repository
 
+import androidx.lifecycle.LiveData
 import com.cart.kotlin_hoo_study.db.dao.FavouriteShoeDao
 import com.cart.kotlin_hoo_study.db.data.FavouriteShoe
 import kotlinx.coroutines.Dispatchers.IO
@@ -20,5 +21,9 @@ class FavouriteShoeRepository @Inject constructor(private val favouriteShoeDao: 
         withContext(IO) {
             favouriteShoeDao.insertFavouriteShoe(favouriteShoe)
         }
+    }
+
+    fun findFavouriteShoeByUserIdAndShoeId(userId: Long, shoeId: Long): LiveData<FavouriteShoe> {
+        return favouriteShoeDao.findFavouriteShoeByUserIdAndShoeId(userId, shoeId)
     }
 }
