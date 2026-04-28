@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <!--定义的这个 shoe 变量没有被用到，ImageView 与 TextView 的赋值是直接在
+        ShoeAdapter 中的 onBindViewHolder 函数中的 bind 函数中实现的。应该也可以通过这里定义的 shoe 变量进行赋值实现-->
         <variable
             name="shoe"
             type="com.cart.kotlin_hoo_study.db.data.Shoe"/>
@@ -38,8 +40,7 @@
         app:layout_constraintBottom_toBottomOf="@id/ivShoe"
         app:layout_constraintEnd_toEndOf="@id/ivShoe"
         app:layout_constraintStart_toStartOf="@id/ivShoe"
-        tools:text="Air Jordan 1"
-        android:text="@{shoe.name}"/>
+        tools:text="Air Jordan 1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
