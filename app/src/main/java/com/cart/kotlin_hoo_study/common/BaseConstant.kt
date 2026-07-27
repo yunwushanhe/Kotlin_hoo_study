@@ -3,6 +3,9 @@ package com.cart.kotlin_hoo_study.common
 object BaseConstant {
 
     const val KEY_REGISTER_ACCOUNT = "register_account"
+    const val SHOE_NAME_NIKE = "Nike"
+    const val SHOE_NAME_ADIDAS = "Adidas"
+    const val SHOE_NAME_OTHER = "Other"
 
     const val USER_NAME:String = "TeaOf"
     const val USER_PWD:String = "123456"

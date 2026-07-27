@@ -26,6 +26,10 @@ class ShoeModel @Inject constructor(
         return shoeRepository.findShoeByBrand(brand)
     }
 
+    fun getShoesNotInBrand(brand: Array<String>): LiveData<List<Shoe>> {
+        return shoeRepository.findShoesNotInBrand(brand)
+    }
+
     fun refreshShoes() {
         viewModelScope.launch {
             shoeRepository.getAllShoeSync()

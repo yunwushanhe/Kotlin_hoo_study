@@ -34,6 +34,9 @@ interface ShoeDao {
     @Query("select * from shoe where brand in (:brand)")
     fun findShoeByBrand(brand: Array<String>): LiveData<List<Shoe>>
 
+    @Query("SELECT * FROM shoe WHERE brand NOT IN (:brand)")
+    fun findShoesNotInBrand(brand: Array<String>): LiveData<List<Shoe>>
+
     @Query(
         "select shoe.* from shoe " +
         "inner join favourite_shoe on favourite_shoe.shoe_id = shoe.id " +

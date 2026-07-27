@@ -47,6 +47,10 @@ class ShoeRepository @Inject constructor(private val shoeDao: ShoeDao) {
         return shoeDao.findShoeByBrand(brand)
     }
 
+    fun findShoesNotInBrand(brand: Array<String>): LiveData<List<Shoe>> {
+        return shoeDao.findShoesNotInBrand(brand)
+    }
+
     fun findFavouriteShoesByUserId(userId: Long): LiveData<List<Shoe>> {
         return shoeDao.findFavouriteShoesByUserId(userId)
     }

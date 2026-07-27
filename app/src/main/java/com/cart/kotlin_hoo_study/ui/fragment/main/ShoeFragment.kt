@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.navigation.fragment.findNavController
 import com.cart.kotlin_hoo_study.R
+import com.cart.kotlin_hoo_study.common.BaseConstant
 import com.cart.kotlin_hoo_study.ui.adapter.ShoeAdapter
 import com.cart.kotlin_hoo_study.viewmodel.ShoeModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -77,6 +78,14 @@ class ShoeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             // 动画进行时忽略点击
             if (animatorSet?.isRunning == false) {
                 Snackbar.make(view, "Nike", Snackbar.LENGTH_SHORT).show()
+                // 获取 LiveData
+                val nikeShoesLiveData = shoeModel.getShoesByBrand(arrayOf(BaseConstant.SHOE_NAME_NIKE))
+                // 观察这个 LiveData，当数据准备好时再更新 Adapter
+                nikeShoesLiveData.observe(viewLifecycleOwner) { shoes ->
+                    shoes?.let {
+                        shoeAdapter.submitList(it)
+                    }
+                }
                 shoeAnimation() // 收起动画
             }
         }
@@ -84,13 +93,30 @@ class ShoeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             // 动画进行时忽略点击
             if (animatorSet?.isRunning == false) {
                 Snackbar.make(view, "Adidas", Snackbar.LENGTH_SHORT).show()
+                // 获取 LiveData
+                val adidasShoesLiveData = shoeModel.getShoesByBrand(arrayOf(BaseConstant.SHOE_NAME_ADIDAS))
+                // 观察这个 LiveData，当数据准备好时再更新 Adapter
+                adidasShoesLiveData.observe(viewLifecycleOwner) { shoes ->
+                    shoes?.let {
+                        shoeAdapter.submitList(it)
+                    }
+                }
                 shoeAnimation()
             }
         }
+        // 这个按钮现在的执行逻辑就是获取所有的鞋子进行展示
         mOther.setOnClickListener {
             // 动画进行时忽略点击
             if (animatorSet?.isRunning == false) {
                 Snackbar.make(view, "Other", Snackbar.LENGTH_SHORT).show()
+                // 获取 LiveData
+                val otherShoesLiveData = shoeModel.getShoesNotInBrand(arrayOf(BaseConstant.SHOE_NAME_OTHER))
+                // 观察这个 LiveData，当数据准备好时再更新 Adapter
+                otherShoesLiveData.observe(viewLifecycleOwner) { shoes ->
+                    shoes?.let {
+                        shoeAdapter.submitList(it)
+                    }
+                }
                 shoeAnimation()
             }
         }
