@@ -19,7 +19,11 @@
         android:id="@+id/favouriteFragment"
         android:name="com.cart.kotlin_hoo_study.ui.fragment.main.FavouriteFragment"
         android:label="favourite_fragment"
-        tools:layout="@layout/favourite_fragment" />
+        tools:layout="@layout/favourite_fragment">
+        <action
+            android:id="@+id/action_favouriteFragment_to_shoeDetailFragment"
+            app:destination="@id/shoeDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/meFragment"

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    // 与 kotlin-android 同版本，勿再通过 catalog 指定 version，否则会冲突
+    id("org.jetbrains.kotlin.kapt")
     alias(libs.plugins.navigation.safeargs)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
@@ -63,6 +65,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.glide)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.lottie)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

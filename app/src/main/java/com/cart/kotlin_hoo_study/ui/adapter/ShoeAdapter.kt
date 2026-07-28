@@ -33,25 +33,25 @@ class ShoeAdapter(
         holder.bind(shoe)
     }
 
-        inner class ViewHolder(
-            private val binding: ItemShoeBinding
-        ) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(
+        private val binding: ItemShoeBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(item: Shoe) {
-                binding.apply {
-                    tvName.text = item.name
-                    Glide.with(ivShoe.context)
-                        .asBitmap()
-                        .load(item.imageUrl)
-                        .placeholder(R.drawable.glide_placeholder)
-                        .centerCrop()
-                        .into(ivShoe)
-                    root.setOnClickListener {
-                        onItemClick?.invoke(item)
-                    }
+        fun bind(item: Shoe) {
+            binding.apply {
+                tvName.text = item.name
+                Glide.with(ivShoe.context)
+                    .asBitmap()
+                    .load(item.imageUrl)
+                    .placeholder(R.drawable.glide_placeholder)
+                    .centerCrop()
+                    .into(ivShoe)
+                root.setOnClickListener {
+                    onItemClick?.invoke(item)
                 }
             }
         }
+    }
 
     class ShoeDiffCallback : DiffUtil.ItemCallback<Shoe>() {
         override fun areItemsTheSame(oldItem: Shoe, newItem: Shoe): Boolean {
