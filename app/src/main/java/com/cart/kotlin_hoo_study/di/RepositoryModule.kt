@@ -13,7 +13,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
- * 提供 Repository 相关对象的实例，但实际上面不需要也可以，
+ * 提供 Repository 相关对象的实例，但实际上不需要也可以，
  * 因为所有的 Repository 对象都加上了Hilt框架的 @Singleton 注解，直接声明对象变量并加上 @Inject 注解延迟初始化就可以完成注入
  * 以 ShoeRepository 的实例注入为例
  * 这里写出，是为了让依赖注入对象的管理，体现出可以分类分模块进行管理

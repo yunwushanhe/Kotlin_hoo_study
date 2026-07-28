@@ -26,4 +26,16 @@ class FavouriteShoeRepository @Inject constructor(private val favouriteShoeDao: 
     fun findFavouriteShoeByUserIdAndShoeId(userId: Long, shoeId: Long): LiveData<FavouriteShoe> {
         return favouriteShoeDao.findFavouriteShoeByUserIdAndShoeId(userId, shoeId)
     }
+
+    suspend fun findFavouriteShoeByUserIdAndShoeIdSync(userId: Long, shoeId: Long): FavouriteShoe? {
+        return withContext(IO) {
+            favouriteShoeDao.findFavouriteShoeByUserIdAndShoeIdSync(userId, shoeId)
+        }
+    }
+
+    suspend fun deleteFavouriteShoeByUserIdAndShoeId(userId: Long, shoeId: Long) {
+        withContext(IO) {
+            favouriteShoeDao.deleteFavouriteShoeByUserIdAndShoeId(userId, shoeId)
+        }
+    }
 }

@@ -19,10 +19,17 @@ import com.cart.kotlin_hoo_study.databinding.RegisterFragmentBinding
 import com.cart.kotlin_hoo_study.ui.activity.MainActivity
 import com.cart.kotlin_hoo_study.viewmodel.LoginModel
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.lifecycle.lifecycleScope
+import com.cart.kotlin_hoo_study.common.UserPreferences
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private val loginModel: LoginModel by viewModels()
+    @Inject
+    lateinit var userPreferences: UserPreferences
+
     private lateinit var binding: LoginFragmentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +83,9 @@ class LoginFragment : Fragment() {
         loginModel.loginResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is LoginModel.LoginResult.Success -> {
+                    lifecycleScope.launch {
+                        userPreferences.saveLoginUser(result.user.id, result.user.account)
+                    }
                     val intent = Intent(context, MainActivity::class.java)
                     startActivity(intent)
                     Toast.makeText(context, "登录成功！欢迎 ${result.user.account}", Toast.LENGTH_SHORT).show()

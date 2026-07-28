@@ -8,6 +8,7 @@ package com.cart.kotlin_hoo_study.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -21,4 +22,10 @@ interface FavouriteShoeDao {
 
     @Query("SELECT * FROM favourite_shoe WHERE user_id = :userId AND shoe_id = :shoeId")
     fun findFavouriteShoeByUserIdAndShoeId(userId: Long, shoeId: Long): LiveData<FavouriteShoe>
+
+    @Query("SELECT * FROM favourite_shoe WHERE user_id = :userId AND shoe_id = :shoeId")
+    suspend fun findFavouriteShoeByUserIdAndShoeIdSync(userId: Long, shoeId: Long): FavouriteShoe?
+
+    @Query("DELETE FROM favourite_shoe WHERE user_id = :userId AND shoe_id = :shoeId")
+    fun deleteFavouriteShoeByUserIdAndShoeId(userId: Long, shoeId: Long)
 }
