@@ -18,12 +18,14 @@
 
         <ImageView
             android:id="@+id/iv_shoe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/guide" />
+            app:layout_constraintBottom_toTopOf="@+id/guide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 <!--        android:background="@drawable/detail_img_bg" -->
 
         <androidx.constraintlayout.widget.Guideline
