@@ -7,6 +7,7 @@
 package com.cart.kotlin_hoo_study.db.repository
 
 import androidx.lifecycle.LiveData
+import com.cart.kotlin_hoo_study.common.BaseConstant
 import com.cart.kotlin_hoo_study.db.dao.UserDao
 import com.cart.kotlin_hoo_study.db.data.User
 import kotlinx.coroutines.Dispatchers.IO
@@ -42,7 +43,7 @@ class UserRepository @Inject constructor(private val userDao: UserDao) {
 
     suspend fun register(email: String, account: String, pwd: String): Long {
         return withContext(IO) {
-            userDao.insert(User(email, account, pwd, "https://raw.githubusercontent.com/mCyp/Photo/master/1560651318109.jpeg"))
+            userDao.insert(User(email, account, pwd, BaseConstant.DEFAULT_USER_HEAD_IMAGE))
         }
     }
 
