@@ -6,9 +6,12 @@
  */
 package com.cart.kotlin_hoo_study.ui.databinding
 
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions.bitmapTransform
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import com.cart.kotlin_hoo_study.R
 
 /**
@@ -30,4 +33,22 @@ object BindingAdapters {
             .centerCrop()
             .into(view)
     }
+
+    // 加载带圆角的头像
+    @JvmStatic
+    @BindingAdapter("imageTransFromUrl")
+    fun bindImageTransFromUrl(view: ImageView, imageUrl: String?){
+        if(!imageUrl.isNullOrEmpty()){
+            Glide.with(view.context)
+                .load(imageUrl)
+                .apply(bitmapTransform(RoundedCornersTransformation(20, 0, RoundedCornersTransformation.CornerType.ALL)))
+                .into(view)
+        }
+    }
+
+    // 文本监听器
+    /*@BindingAdapter("addTextChangedListener")
+    fun addTextChangedListener(editText: EditText, simpleWatcher: SimpleWatcher) {
+        editText.addTextChangedListener(simpleWatcher)
+    }*/
 }
