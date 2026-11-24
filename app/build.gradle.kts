@@ -64,6 +64,7 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.gson)
     implementation(libs.glide)
+    implementation(libs.glideTrans)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.lottie)
     testImplementation(libs.junit)
