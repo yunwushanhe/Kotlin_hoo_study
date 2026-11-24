@@ -1,8 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    // 与 kotlin-android 同版本，勿再通过 catalog 指定 version，否则会冲突
-    id("org.jetbrains.kotlin.kapt")
+    id("org.jetbrains.kotlin.kapt") // 与 kotlin-android 同版本，勿再通过 catalog 指定 version，否则会冲突。为了让 BindingAdapters 生效才引入的这个插件，并不是因为room的原因。
     alias(libs.plugins.navigation.safeargs)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
