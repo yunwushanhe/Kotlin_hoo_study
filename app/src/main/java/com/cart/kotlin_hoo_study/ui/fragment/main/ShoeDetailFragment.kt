@@ -101,6 +101,13 @@ class ShoeDetailFragment : Fragment() {
                     Snackbar.make(view, "收藏成功！", Snackbar.LENGTH_SHORT).show()
                 }
                 // 图标由 initFavouriteIcon 的 observer 自动响应数据库变化并更新。每次相关表数据变了，Room 都会再通知这个 Observer执行。
+                // initFavouriteIcon → 注册 LiveData observer（观察 Room 的查询），当Room 检测到 favourite_shoe 表变化 → 自动重新执行 SQL 查询。
+                // Room 检测到 favourite_shoe 表变化 → 自动重新执行 SQL 查询，也就是说只要 favourite_shoe 表发生变化了，
+                // findFavouriteShoeByUserIdAndShoeId 这个函数就会被重新执行一次，因为在 initFavouriteIcon 函数里面对这个函数返回的 LiveData 数据进行了观察。
+                // Room 会解析 SQL 知道这个查询依赖 favourite_shoe 表。只有 favourite_shoe 表（不是其他表）发生变化时，这个查询才会重新执行。
+                // 没有 .observe(...)，Room 不会重新执行查询
+                // viewLifecycleOwner 在 onStart～onStop 期间是活跃的，此时表变化才会触发重新查询
+                // 如果 Fragment 不可见（比如被压后台），Room 不会浪费资源去重新查询
             }
         }
     }
